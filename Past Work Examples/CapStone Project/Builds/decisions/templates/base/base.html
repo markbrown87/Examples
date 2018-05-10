@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- This is in html -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href = "https://www.favicon.cc/logo3d/577278.png">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116425276-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116425276-1');
+</script>
+
+{% block title %}<title>MAUT- Multi Attribute Utility Theory </title> {% endblock %}
+<!-- Latest compiled and minified Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<!-- CDNS for JS, JPOPPER, JQUERY -->
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+<!-- Custom styles for this template -->
+<link href="../../static/css/starter-template.css" rel="stylesheet">
+
+<link href="../../static/css/1/index.css" rel="stylesheet">
+<script src="../../static/tmp2/assets/js/main.js"></script>
+<link href="../../static/css/carousel.css" rel="stylesheet">
+
+ <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+</head>
+<body style="padding-bottom: none;">
+
+<div class='preloader'><div class='loaded'>&nbsp;</div></div>
+
+{% block navbar %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<!-- <a class="navbar-brand" href="#"><img src="../../static/assets/images/maut.png" alt="Logo" /></a> -->
+  <a class="nav-link text-white" href="{%url 'front' %}"><font size="+2"><strong>MAUT</strong></font></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="nav navbar-nav navbar-right">
+      {% if user.is_authenticated %}
+	            <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'UserDecisionView' %}">New Decision</a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'userHome' %}">Profile<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'logout' %}?next=/login/">Logout</a>
+          </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{% url 'index' %}">New Decision <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{% url 'login' %}">Sign In</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{% url 'register' %}">Create Account</a>
+      </li>
+      {% endif%}
+	  <li class="nav-item">
+        <a class="nav-link text-white" href="{% url 'contact' %}"> Contact Us </a>
+      </li>
+
+      <!-- <li class="nav-item dropdown"> -->
+        <!-- <a class="nav-link dropdown-toggle text-white" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a> -->
+        <!-- <div class="dropdown-menu" aria-labelledby="dropdown01"> -->
+          <!-- <a class="dropdown-item" href="{% url 'carQuery' %}">API test</a> -->
+          <!-- <a class="dropdown-item" href="{% url 'contact' %}"> Contact Us </a> -->
+        <!-- </div> -->
+      <!-- </li> -->
+    </ul>
+  </div>
+</nav>
+<br>
+{% endblock %}
+{% block content %}
+{% endblock %}
+</body>
+</html>

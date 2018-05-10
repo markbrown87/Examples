@@ -1,0 +1,26 @@
+Script started on Fri Jan 22 16:41:34 2016
+bash-3.2$ ./lab1
+Please enter time(1) [example 3:55]: 1:89
+Now enter time(2): 2:34
+Good, now enter a scalar: 7
+Time1 is < time2
+time1 divided by scalar: 0:21
+time1 times scalar: 17:23
+time2 divided by scalar: 0:22
+time2 times scalar: 17:58
+time1 added with time2: 5:03
+time1 minus time2: 0:05
+bash-3.2$ ./lab1
+Please enter time(1) [example 3:55]: 1:00
+Now enter time(2): 4:00
+Good, now enter a scalar: 3
+Time1 is < time2
+time1 divided by scalar: 0:20
+time1 times scalar: 3:00
+time2 divided by scalar: 1:20
+time2 times scalar: 12:00
+time1 added with time2: 5:00
+time1 minus time2: 3:00
+bash-3.2$ exit
+
+script done on Fri Jan 22 16:42:07 2016

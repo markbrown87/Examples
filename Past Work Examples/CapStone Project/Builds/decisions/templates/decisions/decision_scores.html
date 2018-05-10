@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %} {% block content %} {% load template_filters %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+  var warnMessage = "You have unsaved changes on this page!";
+
+  $(document).ready(function() {
+    window.onbeforeunload = function() {
+      if (warnMessage != null) return warnMessage;
+    }
+    $('input:submit').click(function(e) {
+      warnMessage = null;
+    });
+  });
+</script>
+<style>
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <h2> Custom Decision Scoring </h2>
+      <p> Below are different options for the given criteria. </p>
+      <p> Select how you feel about each based on the given criteria. </p>
+    </div>
+    <div class="col-6 userForms">
+      <div class="card text-white bg-dark mb-3" style="width: 30rem; margin:auto;">
+        <div class="card-header" style="margin: auto">Helpful Hints</div>
+        <div class="card-body" style="margin:auto;">
+          <p class="card-text">Assign a value to each part of the overall criteria</p>
+          <p class="card-text">If a part of a criteria has a higher score then the items that better match that part will have a higher score in the overall decision</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10 userForms">
+      <form action="" method="post">
+        {% csrf_token %}
+        <table class="table">
+          <tr>
+            <th> Item/Criteria </th>
+            {{scoreForm.errors}}
+            <p> Enter a value 0-100 for each item based on each criteria. </p>
+            <p> The higher the value the better the item is based on the criteria. </p>
+            {% for criteria in request.session.criteriaList %}
+            <th> {{criteria.0}} </th>
+            {% endfor %}
+          </tr>
+          {% for item in request.session.itemList %}
+          <tr>
+            <th> {{item.0}} </th>
+            {% for criteria in request.session.criteriaList %} {% with forloop.parentloop.counter0|addstr:"_"|addstr:forloop.counter0 as key %}
+            <td> {{scoreForm|keyvalue:key}} </td>
+            {% endwith %} {% endfor %}
+          </tr>
+          {% endfor %}
+        </table>
+        <button class="btn btn-lg btn-primary" type="button" onclick="window.history.back()">Back</button>
+        <button class="btn btn-lg btn-primary" style="margin-left: 10px;" onclick="warnMessage=null" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+{% endblock %}

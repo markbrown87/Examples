@@ -1,0 +1,19 @@
+Script started on Thu Apr 14 15:03:01 2016
+bash-3.2$ g++ main.cc -o lab12
+bash-3.2$ ./lab12
+Enter a number: 28
+The even numbers counting to there:
+0 2 4 6 8 10 12 14 16 18 20 22 24 26 28 
+Enter a number: 18
+The even numbers counting to there:
+0 2 4 6 8 10 12 14 16 18 
+Enter a number: -2
+The even numbers counting to there:
+
+Enter a string: go bobcats
+Now enter two numbers that are within the bounds of the string: 3 7
+This is how your words look now:
+go acbobts
+bash-3.2$ exit
+
+script done on Thu Apr 14 15:03:37 2016

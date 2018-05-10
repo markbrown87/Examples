@@ -1,0 +1,40 @@
+<!doctype html> {% extends 'base/base.html' %} {% block content %} {% load template_filters %}
+<br>
+<br>
+<style>
+	.container{
+		padding-left: 0;
+		padding-right: 0;
+		margin-left:  auto;
+		margin-right: auto;
+	}
+</style>
+<div class="container">
+	<div class="row">
+		<div class="userForms col-4" style="margin: auto 2em; float: left;">
+			<h3> Make a decision on colleges </h3>
+			<p> Narrow down some of your options by location. </p>
+			<p> How would you like to narrow your results down? </p>
+			<form action="" method="post">
+				{% csrf_token %}
+				<div>
+					{{ locationFilterForm.location_filter }} {{locationFilterForm.errors}}
+				</div>
+				<br>
+				<button class="btn btn-lg btn-primary btn-sm" type="submit">Submit</button>
+			</form>
+			<br>
+		</div>
+
+		<div class="col-7">
+			<div class="card text-white bg-dark mb-3" style="width: 30rem; margin:auto;">
+				<div class="card-header" style="margin: auto">Helpful Hints</div>
+				<div class="card-body" style="margin:auto;">
+					<p class="card-text">Need help deciding on what is important? Here are some helpful <a href="http://student-tutor.com/blog/top-10-college-resources-for-high-school-students/">resources</a></p>
+					<p class="cad-text">Throughout the decision making process hints like these will appear.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

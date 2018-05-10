@@ -1,0 +1,54 @@
+CS2401 	Spring 2016	Lab 3 Answers	Name: 	Mark Brown			
+The numbers below line up with the numbers on your lab instruction sheet.
+
+Part One: 7
+-below is what appeared on the terminal 
+*
+*
+*
+*
+*
+*
+
+Part One: 10
+-below is what appeared on the terminal
+*
+**
+***
+****
+*****
+******
+
+Part One: 11
+The effect of using static on int x changed it so that it won't rewrite to that address rather adds to the previous variable.
+
+
+Part One: 12
+auto is a declartion specifier which means that is stores it in a local automatic storage class. It makes the *'s reflect that of the normal int x from answer(1);
+
+Part Two: 4
+cout<<ptr<<endl;--below is what appeared on the terminal
+0x8065d48
+
+Part Two: 5
+cout<<ptr&;--below is what appeared on the terminal
+0x804728c
+
+Part Two: 8
+First line -- 2402is stored at 0x8065f28
+Last line -- 2511is stored at 0x8065f28
+
+Part Two: 11
+Last two lines--
+149717776is stored at 0x8061000
+Segmentation Fault (core dumped)
+
+
+Part Two: 13
+
+#0  0x08050fee in main () at lab3-part2.cc:11
+
+What are the three different storage methods for variables in C++?
+
+
+Submit your source code and this answer sheet on Blackboard.

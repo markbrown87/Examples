@@ -1,0 +1,6 @@
+{% autoescape off %}
+Hi {{ user.username }},
+
+Thank you for registering with MAUT. You are one step away from simplifying your decision making process. Please click on the link to confirm your email address,
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+{% endautoescape %}

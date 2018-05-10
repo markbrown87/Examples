@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="userForms">
+	<div class="col-12">
+
+		<h2> Welcome to the Book decision page! </h2>
+		<p> To start, what criteria would you like to use to choose a new book to read? </p>
+
+		<form action="" method="post">
+            {% csrf_token %}
+            <div class="col-10">
+			<table>
+				{% for field in bookCriteriaForm %}
+				<tr>
+					<td> {{field.label}} </td>
+					<td> {{field}} {{field.errors}} </td>
+					</tr>
+				{% endfor %}
+			</table>
+			<br>
+			<button class="btn btn-lg btn-primary" style="margin: auto;" type="submit">Submit</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

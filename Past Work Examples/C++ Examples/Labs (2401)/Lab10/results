@@ -1,0 +1,45 @@
+Script started on Fri Apr 01 10:41:57 2016
+bash-3.2$ ./lab10
+Enter 1 to record a Circle.
+Enter 2 to record a Rectangle.
+Enter 3 to record a Trapezoid. 
+Enter 4 to quit and see total for the box.
+1
+Please input the radius: 3.00
+Enter 1 to record a Circle.
+Enter 2 to record a Rectangle.
+Enter 3 to record a Trapezoid. 
+Enter 4 to quit and see total for the box.
+2
+Please input the length: 4
+Now input the width: 3.0
+Enter 1 to record a Circle.
+Enter 2 to record a Rectangle.
+Enter 3 to record a Trapezoid. 
+Enter 4 to quit and see total for the box.
+3
+Please input the base1: 2
+Now input the base2: 3.00
+Finally, input the height: 4
+Enter 1 to record a Circle.
+Enter 2 to record a Rectangle.
+Enter 3 to record a Trapezoid. 
+Enter 4 to quit and see total for the box.
+2
+Please input the length: 4
+Now input the width: 4
+Enter 1 to record a Circle.
+Enter 2 to record a Rectangle.
+Enter 3 to record a Trapezoid. 
+Enter 4 to quit and see total for the box.
+1
+Please input the radius: 6
+Enter 1 to record a Circle.
+Enter 2 to record a Rectangle.
+Enter 3 to record a Trapezoid. 
+Enter 4 to quit and see total for the box.
+4
+The total cost of this box of blocks is $179.37
+bash-3.2$ exit
+
+script done on Fri Apr 01 10:46:03 2016

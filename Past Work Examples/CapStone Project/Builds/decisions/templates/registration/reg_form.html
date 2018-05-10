@@ -1,0 +1,64 @@
+
+{% extends 'base/base.html' %}
+
+{% block content %}
+{% if message != "" %}
+    <b style="color: green"> {{message}} </b>
+{% endif %}
+<link href="../../static/css/signin.css" rel="stylesheet">
+<!-- Forms for Django based registration -->
+<br>
+ <form class= "form-signin" method= "post">
+  <h2 class="form-signin-heading">Create an account</h2>
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TermsOfService">Submit</button>
+   <div id="TermsOfService" class="modal fade" role="dialog" style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Terms Of Service</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>
+            <strong>
+              PLEASE READ THE FOLLOWING TERMS OF SERVICE CAREFULLY. BY ACCESSING OR USING OUR SITE AND SERVICES, YOU AGREE TO THE FOLLOWING TERMS:
+            </strong><br>
+            The information you have provided to us, as well as any decisions you make through the MAUT website will be saved through the life
+            of the software. If you choose to provide any of the optional information, found in the edit section of the user home page, it will
+            also be saved. This information will be used for statistical analysis in an academic setting. If you accept these terms and desire
+            to create a profile press the 'I AGREE' button below. If you do not expressly agree to all terms and conditions, then please do not
+            access or use our site or services.
+          </p>
+          <input class="check_list" name="check_list[]" type="checkbox" onchange="document.getElementById('btn1').disabled = !this.checked;">I have read and agree to the Terms of Service</label>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-lg-5 btn-success btn-block" type="submit" id="btn1" disabled="True">I agree</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+<script type="text/javascript">
+function check() {
+  if(document.getElementById("btn1").checked = true){
+    $('#btn1').prop('disabled', false);
+
+  } else {
+    $('#btn1').prop('enabled', true);
+  }
+};
+</script>
+
+{% endblock %}

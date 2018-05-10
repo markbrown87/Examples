@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %} {% block content %} 
+<title> {{name}} Details </title>
+<br>
+<h2> {{name}} Details </h2>
+<br>
+<table border="1">
+<tr>
+<th> Criteria </th>
+<th> Value </th>
+<tr>
+
+{% for item in info %}
+<tr>
+<td> {{ item.0 }}</td>
+<td> {{ item.1 }}</td>
+<tr>
+{% endfor %}
+</table>
+{% endblock %}

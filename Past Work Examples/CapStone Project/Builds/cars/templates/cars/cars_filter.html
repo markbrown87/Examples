@@ -1,0 +1,45 @@
+<!doctype html>
+{% extends 'base/base.html' %} {% block content %} {% load template_filters %}
+
+<!--STYLE FORMAT: Don't change these values, yeah dipstick. It's no fun when it's all messed up! -->
+<style>
+
+</style>
+
+<br>
+<script>
+var warnMessage = "You have unsaved changes on this page!";
+
+$(document).ready(function() {
+       window.onbeforeunload = function () {
+            if (warnMessage != null) return warnMessage;
+       }
+    $('input:submit').click(function(e) {
+        warnMessage = null;
+    });
+});
+</script>
+<div class="container">
+	<div class="row">
+	<div class="userForms">
+		<h2> Location Filter </h2>
+		<form action="" method="post">
+			{% csrf_token %} {{locationFilter.non_field_errors}} {% for form in locationFilter %} {{ form.label }}
+			<br> {{ form }} {{form.errors}} <br> {% endfor %}
+			<br>
+			<button class="btn btn-lg btn-primary btn-block" onclick="warnMessage=null" type="submit">Submit</button>
+		</form>
+	</div>
+</div>
+<br>
+<br>
+<br>
+<div>
+	<div class="bordered">
+		<img src="../../static/img/arrow.png" width="50" height="50" align="middle">
+		<text class="font_style"><b>When using the above filter make sure that you use correct inputs.</b></text>
+		<p>Example being ZIC code. '00ad0' is not a ZIP code but '04951' is one.</p>
+	</div>
+</div>
+
+{% endblock %}

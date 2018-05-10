@@ -1,0 +1,158 @@
+{% extends 'base/base.html' %} {% block content %} {% load template_filters %} {% load static %}
+<script>
+var warnMessage = "You have unsaved changes on this page!";
+
+$(document).ready(function() {
+       window.onbeforeunload = function () {
+            if (warnMessage != null) return warnMessage;
+       }
+    $('input:submit').click(function(e) {
+        warnMessage = null;
+    });
+});
+
+function getdetails(recipe) {
+  document.getElementById('recipedetails').value = recipe;
+  document.getElementById('thedetailform').submit();
+}
+</script>
+<style>
+  #centerer {
+    text-align: center;
+  }
+
+  table {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  th {
+    font-size: 25px;
+  }
+
+  td {
+    font-size: 20px;
+  }
+</style>
+<br>
+<div>
+  <div class="results">
+    <div id=centerer>
+      <h2> Recipe Results </h2>
+      <img url="{% static '/img/recipes.jpg'}">
+    </div>
+    <br>
+    <!-- Marketing messaging and featurettes
+	================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+      <div class="row">
+        <div class="col-lg-4">
+          {% if first_pic == "fail" %}
+          <img class="rounded-circle" src="../../static/img/number1.png" alt="Generic placeholder image" width="140" height="140">
+          {% else %}
+          <img class="rounded-circle" src="{{first_pic}}" alt="Generic placeholder image" width="140" height="140">
+          {% endif %}
+          <h2>1st: {% if carsList.0.2 %} {% with "http://"|addstr:carsList.0.2 as carsurl %} <a href={{carsurl}} target="_blank"> {% endwith %} {{carsList.0.0}} </a>
+           {% else %} {{carsList.0.0}} {% endif %} </h2>
+          <p>Score was {{carsList.0.1}}</p>
+          <p> <button onclick='getdetails("{{carsList.0.0}}")' class = "btn btn-lg btn-secondary"> View Details </button> </p>
+          <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          {% if second_pic == "fail" %}
+          <img class="rounded-circle" src="../../static/img/number2.png" alt="Generic placeholder image" width="140" height="140">
+          {% else %}
+          <img class="rounded-circle" src="{{second_pic}}" alt="Generic placeholder image" width="140" height="140">
+          {% endif %}
+          <h2>2nd: {% if carsList.1.2 %} {% with "http://"|addstr:carsList.1.2 as carsurl %} <a href={{carsurl}} target="_blank"> {% endwith %} {{carsList.1.0}} </a>
+           {% else %} {{carsList.1.0}} {% endif %} </h2>
+          <p>Score was {{carsList.1.1}}</p>
+          <p> <button onclick='getdetails("{{carsList.1.0}}")' class = "btn btn-lg btn-secondary"> View Details </button> </p>
+          <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+        </div>
+        <!-- /.col-lg-4 -->
+        {% if carsList.2.0 %}
+        <div class="col-lg-4">
+          {% if third_pic == "fail" %}
+          <img class="rounded-circle" src="../../static/img/number3.png" alt="Generic placeholder image" width="140" height="140">
+          {% else %}
+          <img class="rounded-circle" src="{{third_pic}}" alt="Generic placeholder image" width="140" height="140">
+          {% endif %}
+          <h2>3rd: {% if carsList.2.2 %} {% with "http://"|addstr:carsList.2.2 as carsurl %} <a href={{carsurl}} target="_blank"> {% endwith %} {{carsList.2.0}} </a>
+           {% else %} {{carsList.2.0}} {% endif %} </h2>
+          <p>Score was {{carsList.2.1}}</p>
+          <p> <button onclick='getdetails("{{carsList.2.0}}")' class = "btn btn-lg btn-secondary"> View Details </button> </p>
+          <!--
+  <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+          <!--
+	    <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+        </div>
+        <!-- /.col-lg-4 -->
+        {% endif %}
+      </div>
+      <!-- /.row -->
+    </div>
+    {% if length > 3 %}
+    <div class="col-9" style="margin: auto;">
+      <table class="table">
+        <tr>
+          <th> # </th>
+          <th> Recipe Name </th>
+          <th> Final Score </th>
+          <th> Details </th>
+        </tr>
+        {% for item in carsList %} {% if forloop.counter > 3 %}
+        <tr>
+          <td> {{forloop.counter}} </td>
+          <td> {% if item.2 %} {% with "http://"|addstr:item.2 as carsurl %} <a href={{carsurl}} target="_blank"> {% endwith %} {{item.0}} </a> {% else %} {{item.0}} {% endif %} </td>
+          <td> {{item.1}} </td>
+          <td> <button onclick='getdetails("{{item.0}}")' class = "btn btn-lg btn-secondary"> View Details </button> </td>
+        </tr>
+        {% endif %} {% endfor %}
+      </table>
+      {% endif %}
+    <form action="{% url 'recipe_calculate' %}" method="post">
+      {% csrf_token %}
+      <div id=centerer>
+        <button class="btn btn-lg btn-primary" type="submit" onclick="warnMessage=null" value="View Calculation">View Calculation </button>
+      </div>
+    </form>
+  {% if request.session.saved %}
+    <script>
+      warnMessage = null;
+    </script>
+    <div id=centerer>
+    <b> Decision saved successfully! </b>
+    </div>
+    {% else %}
+    {% if request.user.is_authenticated %}
+    <form action="" method="post">
+      {% csrf_token %}
+      <div id=centerer>
+        <button class="btn btn-lg btn-primary" onclick="warnMessage=null" type="submit">Save</button>
+      </div>
+    </form>
+    {% else %}
+      <div id=centerer>
+        You must be logged in to save this decision.
+      </div>
+      <div id=centerer>
+      <a onclick="warnMessage=null" class ="btn btn-lg btn-primary" href="{% url 'login' %}?next={% firstof request.path '/' %}">Login</a>
+      </div>
+    {% endif %}
+    {% endif %}
+    </div>
+  </div>
+
+</div>
+<div>
+  <form method="post" id="thedetailform" target="_blank" action="{% url 'recipe_details' %}">
+    {% csrf_token%}
+    {{detailForm}} 
+  </form>
+</div>
+{% endblock %}

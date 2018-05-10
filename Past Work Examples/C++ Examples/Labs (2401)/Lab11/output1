@@ -1,0 +1,30 @@
+Script started on Thu Apr 07 15:58:11 2016
+bash-3.2$ ./test
+What is the description of the chore?: go for a run
+Now please provide the priority number for the chore starting at 1
+with the higher the number the greater the priority: clean       7
+What is the description of the chore?: take a bath
+Now please provide the priority number for the chore starting at 1
+with the higher the number the greater the priority: 2
+What is the description of the chore?: clean the bath
+Now please provide the priority number for the chore starting at 1
+with the higher the number the greater the priority: 1
+What is the description of the chore?: walk the dog
+Now please provide the priority number for the chore starting at 1
+with the higher the number the greater the priority: 4 19
+What is the description of the chore?: shave
+Now please provide the priority number for the chore starting at 1
+with the higher the number the greater the priority: 3
+The description of the chore is: go for a run
+And the priority number of: 7
+The description of the chore is: take a bath
+And the priority number of: 2
+The description of the chore is: clean the bath
+And the priority number of: 1
+The description of the chore is: walk the dog
+And the priority number of: 19
+The description of the chore is: shave
+And the priority number of: 3
+bash-3.2$ exit
+
+script done on Thu Apr 07 15:58:56 2016

@@ -1,0 +1,65 @@
+#include <algorithm>
+#include <cstdlib>
+
+//using namespace std;
+
+template <class T>
+Tarray <T>::Tarray(){
+	used = 0;
+	capacity = 5;
+	data = new T[capacity];
+	current_index = 0;
+}
+
+template <class T>
+void Tarray <T>::add(T item){
+	if (used == capacity)
+		resize();
+	data[used]=item;
+	used++;
+}
+
+template <class T>
+void Tarray <T>::start(){
+	current_index = 0;
+}
+
+template <class T>
+bool Tarray <T>::is_item()const{
+	return current_index < used;
+}
+
+template <class T>
+void Tarray <T>::advance(){
+	current_index++;
+}
+
+template <class T>
+T Tarray <T>::current()const{
+	if(is_item())
+		return data[current_index];
+	else{
+		std::cout << "Sorry - no such item found";
+		T tmp;
+		return tmp;
+	}
+}
+
+template <class T>
+void Tarray <T>::remove_current(){
+	if(is_item()){
+		for(int i=current_index;i<used-1;i++)
+			data[i]=data[i+1];
+		used--;
+	}
+}
+
+template <class T>
+void Tarray <T>::resize(){
+	T *tmp;
+	tmp= new T[capacity+5];
+	std::copy(data,data+used,tmp);
+	capacity=capacity+5;
+	delete[] data;
+	data=tmp;
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<link rel="icon" href = "https://www.favicon.cc/logo3d/577278.png">
+
+    {% block title %}<title>MAUT- Multi Attribute Utility Theory </title> {% endblock %}
+    {% load static %}
+    <!-- Bootstrap CDNs -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome CDN -->
+
+    <script src="https://use.fontawesome.com/f089f1e2d3.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="../../static/css/starter-template.css" rel="stylesheet">
+    <link href="../../static/css/signin.css" rel="stylesheet">
+    <link href="../../static/css/index.css" rel="stylesheet">
+  </head>
+  <!-- bootstrap Nav Bar -->
+   <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="{%url 'userHome' %}">MAUT</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'userHome' %}">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'UserDecisionView' %}">Make a Decision</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}?next=/login/">Logout</a>
+          </li>
+    </nav>
+    <br>
+    <br>
+		<div class= "allForms">
+			<form action="" method="post">
+				{% csrf_token %}
+				<div class="fieldWrapper">
+					<label for="{{form.your_decision.id_for_label}}"> What are you deciding on: </label>
+					{{form.your_decision}}
+				</div>
+				<br>
+				<!-- Forms for Items and criteria weights -->
+				<div>
+					<b> Items </b> <br>
+					<label for="{{form.item1.id_for_label}}"> Item 1: </label>
+					{{form.item1}} <br>
+					<label for="{{form.item2.id_for_label}}"> Item 2: </label>
+					{{form.item2}} <br>
+					<label for="{{form.item3.id_for_label}}"> Item 3: </label>
+					{{form.item3}} <br>
+				</div>
+				<br>
+				<div class="cforms">
+					<b> Criteria </b> <br>
+					<label for="{{form.criteria1.id_for_label}}"> Criteria 1:        </label>
+					{{form.criteria1}} <br>
+					<label for="{{form.cw1.id_for_label}}"> Criteria 1 Weight: </label>
+					{{form.cw1}} <br>
+					<label for="{{form.criteria2.id_for_label}}"> Criteria 2:        </label>
+					{{form.criteria2}} <br>
+					<label for="{{form.cw2.id_for_label}}"> Criteria 2 Weight: </label>
+					{{form.cw2}} <br>
+					<label for="{{form.criteria3.id_for_label}}"> Criteria 3:        </label>
+					{{form.criteria3}} <br>
+					<label for="{{form.cw3.id_for_label}}"> Criteria 3 Weight: </label>
+					{{form.cw3}} <br>
+				</div>
+				<br>
+				<!-- Forms for Criteria scores -->
+					<b> Item Scores based on Given Criteria </b> <br>
+					<table class="iTable">
+						<tr>
+							<th> Item/Criteria </th>
+							<th> Criteria 1 </th>
+							<th> Criteria 2 </th>
+							<th> Criteria 3 </th>
+						</tr>
+						<tr>
+							<th> Item 1 </th>
+							<td>{{form.i1c1}}</td>
+							<td>{{form.i1c2}}</td>
+							<td>{{form.i1c3}}</td>
+						</tr>
+						<tr>
+							<th> Item 2 </th>
+							<td>{{form.i2c1}}</td>
+							<td>{{form.i2c2}}</td>
+							<td>{{form.i2c3}}</td>
+						</tr>
+						<tr>
+							<th> Item 3 </th>
+							<td>{{form.i3c1}}</td>
+							<td>{{form.i3c2}}</td>
+							<td>{{form.i3c3}}</td>
+						</tr>
+					</table>
+				<input type="submit" value="Submit">
+			</form>
+			{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+		</div>
+	</body>
+	</html>

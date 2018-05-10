@@ -1,0 +1,39 @@
+# Bobcat programming Language (BPL) created by Mark Brown
+# 18/3/2017 -> Last Rev. 18/3/2017
+# The BPL is designed to interpret basic language into working/functioning Python Code
+
+# Notes: Remember to split up this program into easily usable pieces for easy reading and decoding
+#	Remember to create a symbol table and a tokenizer
+
+import re
+
+
+class Tokenizer(object):
+	def __init__(self, type, value):
+		self.type = type
+		self.value = value
+	
+
+
+def open_file():
+	with open("prog1.bpl", 'r') as infile:
+		line = infile.readlines( )
+		
+		for N in line:
+			Tokenizer.symbol_table(N)
+
+def main( ):
+	open_file()
+	
+
+
+if __name__ == '__main__':
+	main()
+
+
+'''
+Usefull stuff:
+
+
+https://bitbucket.org/pypy/example-interpreter/src/a00d0f9c36f1?at=default
+'''

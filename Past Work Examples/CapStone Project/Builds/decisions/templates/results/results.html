@@ -1,0 +1,129 @@
+{% extends 'base/base.html' %} {% block content %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+var warnMessage = "You have unsaved changes on this page!";
+
+$(document).ready(function() {
+       window.onbeforeunload = function () {
+            if (warnMessage != null) return warnMessage;
+       }
+    $('input:submit').click(function(e) {
+        warnMessage = null;
+    });
+});
+</script>
+<style>
+  #centerer {
+    text-align: center;
+  }
+
+  table {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  th {
+    font-size: 25px;
+    padding: 0 20px 0 20px;
+  }
+
+  td {
+    font-size: 20px;
+    padding: 0 20px 0 20px;
+  }
+</style>
+<br>
+
+<div class="results">
+  <div id=centerer>
+    <h2> Final Results </h2>
+  </div>
+  <!-- Marketing messaging and featurettes
+================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+    <div class="row">
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="../../static/img/number1.png" alt="Generic placeholder image" width="140" height="140">
+        <h2>1st: {{itemList.0.0}}</h2>
+        <p>Score was {{itemList.0.1}}</p>
+        <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+      </div>
+      <!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="../../static/img/number2.png" alt="Generic placeholder image" width="140" height="140">
+        <h2>2nd: {{itemList.1.0}}</h2>
+        <p>Score was {{itemList.1.1}}</p>
+        <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+      </div>
+      <!-- /.col-lg-4 -->
+      {% if itemList.2.0 %}
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="../../static/img/number3.png" alt="Generic placeholder image" width="140" height="140">
+        <h2>3rd: {{itemList.2.0}}</h2>
+        <p>Score was {{itemList.2.1}}</p>
+        <!--
+    <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+
+      </div>
+      <!-- /.col-lg-4 -->
+      {% endif %}
+    </div>
+    <!-- /.row -->
+  </div>
+</div>
+{% if length > 3 %}
+<div id=centerer>
+  <table>
+    <tr>
+      <th> # </th>
+      <th> Item Name </th>
+      <th> Final Score </th>
+    </tr>
+    {% for item in itemList %} {% if forloop.counter > 3 %}
+    <tr>
+      <td> {{forloop.counter}} </td>
+      <td> {{item.0}} </td>
+      <td> {{item.1}} </td>
+    </tr>
+    {% endif %} {% endfor %}
+  </table>
+</div>
+{% endif %}
+<div class="col-12">
+  <div class="userForms">
+    <form action="/calculation/" method="post">
+      {% csrf_token %}
+      <div id=centerer>
+        <button class="btn btn-lg btn-primary" type="submit" onclick="warnMessage=null" value="View Calculation">View Calculation </button>
+      </div>
+    </form>
+  {% if request.session.saved %}
+    <script>
+      warnMessage = null;
+    </script>
+    <div id=centerer>
+    <b> Decision saved successfully! </b>
+    </div>
+    {% else %}
+    {% if request.user.is_authenticated %}
+    <form action="" method="post">
+      {% csrf_token %}
+      <div id=centerer>
+        <button class="btn btn-lg btn-primary" onclick="warnMessage=null" type="submit">Save</button>
+      </div>
+    </form>
+    {% else %}
+      <div id=centerer>
+        You must be logged in to save this decision.
+      </div>
+      <div id=centerer>
+      <a onclick="warnMessage=null" class ="btn btn-lg btn-primary" href="{% url 'login' %}?next={% firstof request.path '/' %}">Login</a>
+      </div>
+    {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+  {% endblock %}

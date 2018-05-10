@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<br>
+<div class= userForms>
+<h1>Contact</h1>
+<p> This website is currently a work in progress. <br>
+Please let us know of any comments, questions, and suggestions you may have. <br>
+Any and all constructive feedback is welcomed! </p>
+<form role="form" action="" method="post">
+    {% csrf_token %}
+	<div class="fieldWrapper">
+    {{ form.contact_name.errors }}
+    <label for="{{ form.contact_name.id_for_label }}">Name:</label> <br>
+    {{ form.contact_name }}
+	</div>
+	<div class="fieldWrapper">
+    {{ form.contact_email.errors }}
+    <label for="{{ form.contact_email.id_for_label }}">Email:</label> <br>
+    {{ form.contact_email }}
+	</div>
+	<div class="fieldWrapper">
+    {{ form.content.errors }}
+    <label for="{{ form.content.id_for_label }}">Message:</label> <br>
+    {{ form.content }}
+	</div>
+    <button class="btn btn-lg btn-primary"type="submit">Submit</button>
+</form>
+</div>
+
+{% endblock %}

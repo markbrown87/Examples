@@ -1,0 +1,251 @@
+/*
+*Mark Brown
+*23/03/2016
+*This file is used as a templated functions which are connected to the
+*dlist (doubly linked list) file.
+*
+*/
+
+#include <cstdlib>
+#include <iostream>
+//constructor
+template <class T>
+dlist<T>::dlist(){
+	head = NULL;
+	tail = NULL;
+}
+//destructor
+template<class T>
+dlist<T>::~dlist(){
+	Dnode<T> *rmptr=head;
+	while(rmptr != NULL){
+		Dnode<T> *tmp=rmptr->next();
+		delete rmptr;
+		rmptr=tmp;
+	}
+	head = NULL;
+	tail = NULL;
+}
+//copy function
+template<class T>
+dlist<T>::dlist(const dlist& other){
+	if(other.head == NULL){
+		head = NULL;
+		tail = NULL;
+	}
+	else{
+		Dnode<T>* cursor;
+		head = tail = NULL;
+		cursor = other.head;
+		front_insert(cursor->data());
+		cursor=cursor->next();
+		while(cursor != NULL){
+			rear_insert(cursor->data());
+			cursor=cursor->next();
+		}
+	}
+}
+//self assignment
+template<class T>
+dlist<T> dlist<T>::operator =(const dlist& other){
+	if(this == &other)
+		return *this;
+		
+	Dnode<T>* current=head;
+	while(current != NULL){
+		Dnode<T>* tmp = current->next();
+		delete current;
+		current=tmp;
+	}
+	
+	if(other.head == NULL){
+		head = NULL;
+		tail = NULL;
+	}
+	else{
+		Dnode<T>* cursor;
+		cursor = other.head;
+		front_insert(cursor->data());
+		cursor=cursor->next();
+		while(cursor != NULL){
+			rear_insert(cursor->data());
+			cursor=cursor->next();
+		}
+	}
+}
+			
+//functions for manipulating the list
+template <class T>
+void dlist<T>::front_insert(T item){
+	if (head==NULL){
+		head = new Dnode<T>;
+		head->set_data(item);
+		head->set_next(NULL);
+		head->set_previous(NULL);
+		tail = head;
+	}
+	else if (head->next() == NULL){
+		head = new Dnode<T>;
+		head -> set_data(item);
+		head -> set_next(tail);
+		tail -> set_previous(head);
+		head-> set_previous(NULL);
+	}
+	else{
+		Dnode<T> *tmp;
+		tmp = new Dnode<T>;
+		tmp->set_data(item);
+		tmp->set_previous(NULL);
+		tmp->set_next(head);
+		head->set_previous(tmp);
+		head = tmp;
+	}
+		
+}
+template <class T>
+void dlist<T>::rear_insert(T item){
+	if (head==NULL){
+		head = new Dnode<T>;
+		head->set_data(item);
+		head->set_next(NULL);
+		head->set_previous(NULL);
+		tail = head;
+	}
+	else if (head->next() == NULL){
+		tail = new Dnode<T>;
+		tail -> set_data(item);
+		tail -> set_previous(head);
+		tail -> set_next(NULL);
+		head-> set_next(tail);
+	}
+	else{
+		Dnode<T> *tmp;
+		tmp = new Dnode<T>;
+		tmp->set_data(item);
+		tmp->set_previous(tail);
+		tail->set_next(tmp);
+		tmp->set_next(NULL);
+		tail = tmp;
+	}
+		
+}
+
+template<class T>
+void dlist<T>::front_remove(){
+	if(head==NULL)
+		return;
+	else if(head->next() == NULL){
+		Dnode<T> *tmp;
+		tmp = head;
+		delete tmp;
+		head=NULL;
+		tail = head;
+	}
+	else{
+		Dnode<T> *tmp;
+		tmp = head;
+		head=head->next();
+		delete tmp;
+		head->set_previous(NULL);
+	}
+}
+
+template<class T>
+void dlist<T>::rear_remove(){
+	if(head==NULL)
+		return;
+	else if(head->next() == NULL){
+		Dnode<T> *tmp;
+		tmp = head;
+		delete tmp;
+		head=NULL;
+		tail = head;
+	}
+	else{
+		Dnode<T> *tmp;
+		tmp = tail;
+		tail=tail->previous();
+		delete tmp;
+		tail->set_next(NULL);
+	}
+}
+//used for testing
+template <class T>
+void dlist<T>::show(){
+	for(Dnode<T> *cursor = head; cursor != NULL; cursor = cursor->next())
+		std::cout << cursor->data() << std::endl;
+}
+//used for testing
+template <class T>
+void dlist<T>::reverse_show(){
+	for(Dnode<T> *cursor = tail; cursor != NULL; cursor = cursor->previous())
+		std::cout << cursor->data() << std::endl;
+}
+
+template <class T>
+size_t dlist<T>::size(){
+	dlist<T>::iterator it;
+	size_t count = 0;
+   for(it=begin(); it != end(); ++it)
+		count++;
+	return count;
+}
+
+template <class T>
+void dlist<T>::remove(iterator it){
+	Dnode<T> *cursor , *tmpf, *tmpb;
+	for(cursor = head; cursor != it.current; cursor = cursor->next());
+	
+	if(cursor == NULL)
+		return;
+	else if(cursor == head)
+		front_remove();
+	else if(cursor == tail)
+		rear_remove();
+	else{
+		tmpf = cursor->previous();
+		tmpb = cursor->next();
+		tmpf->set_next(tmpb);
+		tmpb->set_previous(tmpf);
+		delete cursor;
+	}
+}
+template <class T>
+void dlist<T>::insert_before(iterator it, T item){
+	if(it.current == NULL)
+		front_insert(item);
+	else if (it.current == head)
+		front_insert(item);
+	else{
+		Dnode<T> *tmpf, *insert;
+		
+		tmpf = it.current->previous();
+		
+		insert = new Dnode<T>(item, insert);
+		insert->set_next(it.current);
+		insert->set_previous(tmpf);
+		it.current->set_previous(insert);
+		tmpf->set_next(insert);
+		//delete tmpf;
+		//delete insert;
+	}
+}
+
+template<class T>
+void dlist<T>::insert_after(iterator it, T item){
+	if(it.current == NULL)
+		rear_insert(item);
+	else if(it.current == tail)
+		rear_insert(item);
+	else{
+		Dnode<T> *tmpb, *insert;
+		
+		tmpb = it.current->next();
+		
+		insert = new Dnode<T>(item, insert);
+		insert->set_previous(it.current);
+		insert->set_next(tmpb);
+		it.current->set_next(insert);
+		tmpb->set_previous(insert);
+	}
+}

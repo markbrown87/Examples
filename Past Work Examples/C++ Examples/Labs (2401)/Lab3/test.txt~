@@ -1,0 +1,51 @@
+CS2401 	Spring 2016	Lab 3 Answers	Name: 				
+The numbers below line up with the numbers on your lab instruction sheet.
+
+Part One: 7
+Answer(1) --below is what appeared on the terminal 
+*
+*
+*
+*
+*
+*
+
+Part One: 10
+Answer(2) --below is what appeared on the terminal
+*
+**
+***
+****
+*****
+******
+
+Part One: 11
+Answer(3)
+The effect of using static on int x changed it so that it won't rewrite to that address rather adds to the previous variable.
+
+
+Part One: 12
+Answer(4)
+auto is a declartion specifier which means that is stores it in a local automatic storage class. It makes the *'s reflect that of the normal int x from answer(1);
+
+Part Two: 4
+Answer(5) 
+cout<<ptr<<endl;--below is what appeared on the terminal
+0x8065d48
+
+Part Two: 5
+Answer(6)
+cout<<ptr&;--below is what appeared on the terminal
+0x804728c
+
+Part Two: 8
+Answer(7) 
+
+Part Two: 11
+
+Part Two: 13
+
+What are the three different storage methods for variables in C++?
+
+
+Submit your source code and this answer sheet on Blackboard.

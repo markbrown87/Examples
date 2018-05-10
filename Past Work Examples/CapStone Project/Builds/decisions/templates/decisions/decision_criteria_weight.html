@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %} {% block content %} {% load template_filters %}
+
+<script src="https://d3js.org/d3.v3.js"></script>
+<style>
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+<link rel="stylesheet" type="text/css" href="{% static 'css/pieChart.css' %}" />
+<script src="{% static 'js/main.js' %}"></script>
+<div class="container">
+
+  <div class="row">
+
+    <form id="post-form" method="post">
+      <div id="main-container">
+
+        <div id="chart-controls" class="">
+          <ul id="menu">
+            <h4>Rate Importance of Each Criteria</h4>
+          </ul>
+
+          <table id="rangebox">
+
+            <tbody>
+
+
+            </tbody>
+          </table>
+          <div class="row">
+            <button id="post" type="submit" style="margin: 0 auto;" class="btn btn-primary btn-sm">Submit </button>
+          </div>
+        </div>
+        <div id="pie" class="col-6"></div>
+        <input type="hidden" id="myVar" name="variable" value={{criteriaList|safe}}> {% csrf_token %} {{weightForm}} {% csrf_token %}
+      </div>
+  </div>
+  </form>
+  <div class="row">
+    <div class="col-12">
+      <div class="card text-white bg-dark mb-3" style="width: 48rem; margin: auto;">
+        <div class="card-header" style="margin: auto">Helpful Hints</div>
+        <div class="card-body" style="margin:auto;">
+          <p class="card-title">The color of the pie chart slices correspond to the value you set the sliders to on the left.</p>
+          <p class="card-text">The larger the pie slice the more important the criteria will be to the overall result.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

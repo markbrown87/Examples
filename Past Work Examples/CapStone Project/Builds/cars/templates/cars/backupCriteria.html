@@ -1,0 +1,62 @@
+{% extends 'base/base.html' %} {% block content %} {% load template_filters %}
+<style>
+	.blank_row {
+		height: 25px;
+	}
+</style>
+<br>
+<div class="userForms">
+	<h2> College Criteria Weights </h2>
+	<p> For each criteria enter a weight that can range from 1-100 </p>
+	<p> A higher weight means it is more important, a lesser weight means it is less important. </p>
+	<p> All the weights <b> must </b> add up to 100. </p>
+	<form action="" method="post">
+		{% csrf_token %}
+		<div class="col-12">
+			{{collegeCriteriaWeightForm.non_field_errors}}
+			<table class="table">
+				{% for form in collegeCriteriaWeightForm %}
+				<tr>
+					<td> {{form.label}} </td>
+					<td> {{form}} {{form.errors}} </td>
+				</tr>
+				{% endfor %}
+				<tr class="blank_row">
+					<td colspan="2"> </td>
+				</tr>
+				<tr>
+					<td> Remaining Weight: </td>
+					<td> <input type="text" value="100" id="remaining" onblur="calculate()" readonly> </td>
+				</tr>
+			</table>
+		</div>
+		<br>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+	</form>
+</div>
+
+<script type="text/javascript">
+	//This function checks all the weights entered on the page.
+	//The weights are summed and subtracted from 100 to determine remaining weight available.
+	//The color of the remaining weight field changes based on the amount.
+	function calculate() {
+		var remaining = document.getElementById('remaining');
+		var el, i = 0,
+			total = 0;
+		while (el = document.getElementById(('weight_' + (i++)))) {
+			if (el.value != "") {
+				el.value = el.value.replace(/\\D/, "");
+				total = total + Number(el.value);
+			}
+		}
+		remaining.value = (100 - total);
+		if (total > 100) {
+			remaining.style.backgroundColor = "orangered";
+		} else if (total == 100) {
+			remaining.style.backgroundColor = "yellowgreen";
+		} else {
+			remaining.style.backgroundColor = "white";
+		}
+	}
+</script>
+{% endblock %}

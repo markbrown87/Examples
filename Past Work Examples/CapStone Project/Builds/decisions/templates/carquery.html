@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href = "../../static/Mico.ico">
+
+    {% block title %}<title>MAUT- Multi Attribute Utility Theory </title> {% endblock %}
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!-- CDNS for JS, JPOPPER, JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="../../static/css/starter-template.css" rel="stylesheet">
+    <link href="../../static/css/signin.css" rel="stylesheet">
+    <link href="../../static/css/index.css" rel="stylesheet">
+    <script type="text/javascript" src="../../static/static_jquery/js/jquery.js"></script>
+    <script type="text/javascript" src="http://www.carqueryapi.com/js/jquery.min.js"></script>
+	  <script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
+	  <script type="text/javascript">
+		$(document).ready(
+			function()
+			{
+				var carquery = new CarQuery();
+				carquery.init()
+        carquery.setFilters( {sold_in_us:true} );
+     //Optional: initialize the year, make, model, and trim drop downs by providing their element IDs
+         carquery.initYearMakeModelTrim('car-years', 'car-makes', 'car-models', 'car-model-trims');
+
+         //Optional: set the onclick event for a button to show car data.
+         $('#cq-show-data').click(  function(){ carquery.populateCarData('car-model-data'); } );
+
+         //Optional: initialize the make, model, trim lists by providing their element IDs.
+         carquery.initMakeModelTrimList('make-list', 'model-list', 'trim-list', 'trim-data-list');
+        carquery.year_select_min=2000;
+        carquery.year_select_max=2017;
+         var searchArgs =
+     ({
+         body_id:                       "cq-body"
+        ,default_search_text:           "Keyword Search"
+        ,doors_id:                      "cq-doors"
+        ,drive_id:                      "cq-drive"
+        ,engine_position_id:            "cq-engine-position"
+        ,engine_type_id:                "cq-engine-type"
+        ,fuel_type_id:                  "cq-fuel-type"
+        ,min_cylinders_id:              "cq-min-cylinders"
+        ,min_mpg_hwy_id:                "cq-min-mpg-hwy"
+        ,min_power_id:                  "cq-min-power"
+        ,min_top_speed_id:              "cq-min-top-speed"
+        ,min_torque_id:                 "cq-min-torque"
+        ,min_weight_id:                 "cq-min-weight"
+        ,min_year_id:                   "cq-min-year"
+        ,max_cylinders_id:              "cq-max-cylinders"
+        ,max_mpg_hwy_id:                "cq-max-mpg-hwy"
+        ,max_power_id:                  "cq-max-power"
+        ,max_top_speed_id:              "cq-max-top-speed"
+        ,max_weight_id:                 "cq-max-weight"
+        ,max_year_id:                   "cq-max-year"
+        ,search_controls_id:            "cq-search-controls"
+        ,search_input_id:               "cq-search-input"
+        ,search_results_id:             "cq-search-results"
+        ,search_result_id:              "cq-search-result"
+        ,seats_id:                      "cq-seats"
+        ,sold_in_us_id:                 "cq-sold-in-us"
+     }); 
+     carquery.initSearchInterface(searchArgs);
+     //If creating a search interface, set onclick event for the search button.  Make sure the ID used matches your search button ID.
+     $('#cq-search-btn').click( function(){ carquery.search(); } );
+
+			});
+	</script>
+  </head>
+  <!-- bootstrap Nav Bar -->
+   <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="{%url 'home' %}">MAUT</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'index' %}">Decisions <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Sign In</a>
+          </li>
+          <li class="nav-item">
+          	<a class="nav-link" href="{% url 'register' %}">Create Account</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">New Decision</a>
+              <a class="dropdown-item" href="#">Edit Profile</a>
+              <a class="dropdown-item" href="#">Logout</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+    <br>
+    <br>
+    <div>
+      <select name="car-years" id="car-years"></select>  
+      <select name="car-makes" id="car-makes"></select> 
+      <select name="car-models" id="car-models"></select>
+      <select name="car-model-trims" id="car-model-trims"></select> 
+      <input id="cq-show-data" type="button" value="Show Data" />
+<div id="car-model-data"></div>
+<table> 
+   <tr> 
+      <td valign="top"><div id="make-list" /></td> 
+      <td valign="top"><div id="model-list" /></td> 
+      <td valign="top"><div id="trim-list" /></td> 
+   </tr> 
+   <tr> 
+       <td colspan="3"><div id="trim-data-list" /></td> 
+   </tr> 
+</table> 
+<div id="cq-search-controls">
+   <div style="float:left; width:300px;">
+       <fieldset>
+        <center><input type="button" id="cq-search-btn" value="Search CarQuery" /></center>
+        <hr/>
+        Keyword: <input id="cq-search-input" type="text" />
+        <hr/>
+        Year Range: <select id="cq-min-year"></select> to <select id="cq-max-year"></select>
+        <br/><hr/>
+        <input id="cq-sold-in-us" name="us-only-filter" type="checkbox" /><label for="us-only-filter">Show Only US Models</label>
+        <br/><hr/>
+        Engine Position: <select id="cq-engine-position"></select>
+        <br/><hr/>
+        Engine Type: <select id="cq-engine-type"></select>
+        <br/><hr/>
+        Engine Cylinders: <select id="cq-min-cylinders"></select> to <select id="cq-max-cylinders"></select>
+        <br/><hr/>
+        Engine Power (hp): <input type="text" id="cq-min-power" style="width:30px" /> to <input type="text" id="cq-max-power" style="width:30px" />
+        <br/><hr/>
+        Engine Torque (lb-ft): <input type="text" id="cq-min-torque" style="width:30px" /> to <input type="text" id="cq-max-torque" style="width:30px" />
+        <br/><hr/>
+        Engine Fuel Type: <select id="cq-fuel-type"></select>
+        <br/><hr/>
+        Top Speed (mph): <input type="text" id="cq-min-top-speed" style="width:30px" /> to <input type="text" id="cq-max-top-speed" style="width:30px" />
+        <br/><hr/>
+        Drivetrain: <select id="cq-drive"></select>
+        <br/><hr/>
+        Seats: <select id="cq-seats"></select>
+        <br/><hr/>
+        Doors: <select id="cq-doors"></select>
+        <br/><hr/>
+        Weight (lbs): <input type="text" id="cq-min-weight" style="width:30px" /> to <input type="text" id="cq-max-weight" style="width:30px" />
+       </fieldset>
+   </div>
+   <div style="float:left;width:300px;">
+      <fieldset>
+         <div id="cq-search-results">Search Results:</div>
+      </fieldset>
+   </div>
+</div>
+
+<div id="cq-search-result" style="display:none"></div>
+</div>
+</body>
+</html>

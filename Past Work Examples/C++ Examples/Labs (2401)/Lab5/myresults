@@ -1,0 +1,8 @@
+Script started on Wed Feb 17 17:05:24 2016
+bash-3.2$ ./lab5
+Now showing list one:
+Charlie  Lisa  Drew  Derrick  AJ  Bojian  Enter a name to search:Drew
+That name is stored at address: 0x8067318
+Drew  Derrick  AJ  Bojian  Charlie  Lisa  bash-3.2$ exit
+
+script done on Wed Feb 17 17:05:38 2016

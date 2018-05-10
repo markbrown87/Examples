@@ -1,0 +1,25 @@
+#ifndef ITERATOR_H
+#define ITERATOR_H
+
+
+template <class T>
+class dlist;
+
+template <class T>
+class node_iterator
+: public std::iterator<std::forward_iterator_tag, const T>
+{
+	public:
+		friend class dlist<T>;
+		node_iterator(Dnode<T>* init = NULL){current = init;}
+		T& operator *() const {return current->data();}
+		node_iterator& operator ++(){current = current->next(); return *this;}
+		node_iterator operator ++(int){node_iterator original(current); current=current->next(); return original;}
+		node_iterator& operator --(){current = current->previous(); return *this;}
+		node_iterator operator --(int){node_iterator original(current); current=current->previous(); return original;}
+		bool operator ==(const node_iterator other) const{return current == other.current;}
+		bool operator !=(const node_iterator other){return current != other.current;}
+	private:
+		Dnode<T> *current;
+};
+#endif

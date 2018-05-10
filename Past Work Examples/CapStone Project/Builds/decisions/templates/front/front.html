@@ -1,0 +1,677 @@
+<!-- Modified: Mark Brown
+	Date: 27/2/2018
+	Description:
+		tutorial/main page for MAUT and how to make decisions via objective input. Images and
+		links will provide the user with direct help with decisions using online API databases.
+-->
+
+<!doctype html>
+<link rel="icon" href = "https://www.favicon.cc/logo3d/577278.png">
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+
+  <link rel="stylesheet" href="../../static/tmp2/assets/css/bootstrap.min.css">
+  <!--        <link rel="stylesheet" href="../../static/tmp2/assets/css/bootstrap-theme.min.css">-->
+
+
+  <!--For Plugins external css-->
+  <link rel="stylesheet" href="../../static/tmp2/assets/css/plugins.css" />
+  <link rel="stylesheet" href="../../static/tmp2/assets/css/roboto-webfont.css" />
+
+  <!--Theme custom css -->
+  <link rel="stylesheet" href="../../static/tmp2/assets/css/style.css">
+
+  <!--Theme Responsive css-->
+  <link rel="stylesheet" href="../../static/tmp2/assets/css/responsive.css" />
+
+  <script src="../../static/tmp2/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+  {% block title %}
+  <title>MAUT- Multi Attribute Utility Theory </title> {% endblock %}
+  <!-- Latest compiled and minified Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <!-- CDNS for JS, JPOPPER, JQUERY -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+  <!-- Custom styles for this template -->
+  <link href="../../static/css/starter-template.css" rel="stylesheet">
+  <link href="../../static/css/signin.css" rel="stylesheet">
+  <link href="../../static/css/1/index.css" rel="stylesheet">
+  <script type="text/javascript" src="../../static/static_jquery/js/jquery.js"></script>
+  <link href="../../static/css/carousel.css" rel="stylesheet">
+
+</head>
+
+<!--Style format: DO NOT CHANGE YAH DICK HEAD! Yeah you!! The one looking at the HTML code. Don't do it! OR do it, I am just a comment.-->
+<style>
+  .bordered_custom {
+    width: 240px;
+    height: 350px;
+    padding: 20px;
+  }
+
+  .bordered_api {
+    width: 240px;
+    height: 350px;
+    padding: 20px;
+  }
+</style>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="nav-link text-white" href="{%url 'home' %}">
+      <font size="+2"><strong>MAUT</strong></font>
+    </a>
+    <!-- <a class="navbar-brand" href="{%url 'home' %}">MAUT</a> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto ">
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'UserDecisionView' %}">New Decision</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'userHome' %}">Profile<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'logout' %}?next=/login/">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'index' %}">New Decision <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'login' %}">Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'register' %}">Create Account</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'contact' %}"> Contact Us </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--Home page style-->
+  <header id="home" class="home">
+    <div class="overlay-fluid-block">
+      <div class="container text-center">
+        <div class="row">
+          <div class="home-wrapper">
+            <div class="col-md-10 col-md-offset-1">
+              <div class="home-content">
+                <h1>Multi-Attribute Utility Theory</h1>
+                <p>Multi-Attribute Utility Theory or MAUT is an objective twist to making subjective decisions. This site will help you make those hard decisions. If you have any suggestions you can contact us either at the bottom of this page or under the
+                  'Menu' drop down.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sections -->
+  <section id="features" class="features sections">
+    <div class="container">
+      <div class="row">
+        <div class="main_features_content2">
+
+          <div class="col-sm-6">
+            <div class="single_features_left text-center">
+              <img src="../../static/tmp2/assets/images/stok_img.jpg" alt="" />
+            </div>
+          </div>
+
+          <div class="col-sm-6 margin-top-60">
+            <div class="single_features_right ">
+              <h2>WHAT DOES IT DO?</h2>
+              <p>MAUT reads in from hosted API's (Application Programming Interface). Then the user takes what is important to them. By applying scores to what is important it will objectively rank what you "should" consider based on what is important to
+                you. Click the button below for step by step instructions.</p>
+              <div class="features_buttom">
+                <a href="#" onclick="document.getElementById('stepByStep').scrollIntoView(true);return false;" class="btn btn-default">
+                  <font size="+1"><strong>Step-by-Step</strong></font>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--End of Features 2 Section -->
+  <section id="features" class="features sections">
+    <div class="container">
+      <div class="row">
+        <div class="main_features_content2">
+
+
+
+          <div class="col-sm-6 margin-top-60">
+            <div class="single_features_right ">
+              <h2>MAUT DECISIONS</h2>
+              <p>This website has many different API's to pull useful information from. We have a college API, restaurant API, or college API. If you want to begin making a decision you can use the New Decision button above or click to follow the link to
+                your objective and slightly subject ranking of your decisions.</p>
+              <div class="features_buttom">
+                <a href="{% url 'index' %}" class="btn btn-default">
+                  <font size="+1.0"><strong>Decisions!</strong></font>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="single_features_left text-center">
+              <img src="../../static/tmp2/assets/images/stock_img2.jpg" alt="" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--End of Features 2 Section -->
+
+
+  <!-- Sections -->
+  <section id="price" class="service2 sections lightbg">
+
+
+    <div class="head_title text-center">
+      <h1>Type of Decisions</h1>
+      <p>Below you will see that we have a few example API's on display. Click to make a decision OR more info to get the details of our decisions</p>
+    </div>
+    <!-- Example row of columns -->
+    <div class="cd-pricing-container cd-has-margins">
+      <div class="cd-pricing-switcher">
+        <p class="fieldset">
+          <input type="radio" name="duration-2" value="monthly" id="monthly-2" checked>
+          <label for="monthly-2">Decisions</label>
+          <input type="radio" name="duration-2" value="yearly" id="yearly-2">
+          <label for="yearly-2">More Info</label>
+          <span class="cd-switch"></span>
+        </p>
+      </div>
+      <!-- .cd-pricing-switcher -->
+
+      <ul class="cd-pricing-list cd-bounce-invert">
+        <li>
+          <ul class="cd-pricing-wrapper">
+            <li data-type="monthly" class="is-visible">
+              <header class="cd-pricing-header">
+                <h2>College API</h2>
+              </header>
+              <!-- .cd-pricing-header -->
+
+              <div class="cd-pricing-body">
+                <ul class="cd-pricing-features">
+                  <img src="../../static/tmp2/assets/images/college_img.jpeg" alt="" style="width: 100%; height: 100%" />
+                </ul>
+              </div>
+              <!-- .cd-pricing-body -->
+
+              <footer class="cd-pricing-footer">
+                <a class="cd-select" href="{% url 'college' %}">
+                  <font size="+1"><strong>College API</strong></font>
+                </a>
+              </footer>
+              <!-- .cd-pricing-footer -->
+            </li>
+
+            <li data-type="yearly" class="is-hidden">
+              <header class="cd-pricing-header">
+                <h2>College Details</h2>
+              </header>
+              <!-- .cd-pricing-header -->
+
+              <div class="cd-pricing-body">
+                <ul class="cd-pricing-features">
+                  <p>The College API pulls information the America Government's Database that houses many different statistics about Universities and Colleges. The information such as tuition amount, size of school, or admission rate and many more.</p>
+                </ul>
+              </div>
+              <!-- .cd-pricing-body -->
+
+              <footer class="cd-pricing-footer">
+                <a class="cd-select" href="{% url 'college' %}">
+                  <font size="+1"><strong>College API</strong></font>
+                </a>
+              </footer>
+              <!-- .cd-pricing-footer -->
+            </li>
+          </ul>
+          <!-- .cd-pricing-wrapper -->
+        </li>
+
+        <li class="cd-popular">
+          <ul class="cd-pricing-wrapper">
+            <li data-type="monthly" class="is-visible">
+              <header class="cd-pricing-header">
+                <h2>Restaurant API</h2>
+              </header>
+              <!-- .cd-pricing-header -->
+
+              <div class="cd-pricing-body">
+                <ul class="cd-pricing-features">
+                  <img src="../../static/tmp2/assets/images/restaurant_img.jpeg" alt="" style="width: 100%; height: 100%" />
+                </ul>
+              </div>
+              <!-- .cd-pricing-body -->
+
+              <footer class="cd-pricing-footer">
+                <a class="cd-select" href="{% url 'restaurant' %}">
+                  <font size="+1"><strong>Restaurant API</strong></font>
+                </a>
+              </footer>
+              <!-- .cd-pricing-footer -->
+            </li>
+
+            <li data-type="yearly" class="is-hidden">
+              <header class="cd-pricing-header">
+                <h2>Restaurant Details</h2>
+              </header>
+              <!-- .cd-pricing-header -->
+
+              <div class="cd-pricing-body">
+                <ul class="cd-pricing-features">
+                  <p>The restaurant API pulls from a privately owned and shared Database. It narrows down the search using the provided postal code and then provided many different criteria such as price range or user ratings.</p>
+                </ul>
+              </div>
+              <!-- .cd-pricing-body -->
+
+              <footer class="cd-pricing-footer">
+                <a class="cd-select" href="{% url 'restaurant' %}">
+                  <font size="+1"><strong>Restaurant API</strong></font>
+                </a>
+              </footer>
+              <!-- .cd-pricing-footer -->
+            </li>
+          </ul>
+          <!-- .cd-pricing-wrapper -->
+        </li>
+
+        <li>
+          <ul class="cd-pricing-wrapper">
+            <li data-type="monthly" class="is-visible">
+              <header class="cd-pricing-header">
+                <h2>Recipe API</h2>
+              </header>
+              <!-- .cd-pricing-header -->
+
+              <div class="cd-pricing-body">
+                <ul class="cd-pricing-features">
+                  <img src="../../static/tmp2/assets/images/stock_img3.jpg" alt="" style="width: 100%; height: 100%" />
+                </ul>
+              </div>
+              <!-- .cd-pricing-body -->
+
+              <footer class="cd-pricing-footer">
+                <a class="cd-select" href="{% url 'cars_criteria' %}">
+                  <font size="+1"><strong>Recipe API</strong></font>
+                </a>
+              </footer>
+              <!-- .cd-pricing-footer -->
+            </li>
+
+            <li data-type="yearly" class="is-hidden">
+              <header class="cd-pricing-header">
+                <h2>Recipe Details</h2>
+              </header>
+              <!-- .cd-pricing-header -->
+
+              <div class="cd-pricing-body">
+                <ul class="cd-pricing-features">
+                  <p>This wonderful API allows you to use a slider to adjust different aspects of flavor and will return recipes based off the flavor profile selected. You can find your favorite recipes based on what flavors you like! </p>
+                </ul>
+              </div>
+              <!-- .cd-pricing-body -->
+
+              <footer class="cd-pricing-footer">
+                <a class="cd-select" href="{% url 'cars_criteria' %}">
+                  <font size="+1"><strong>Recipe API</strong></font>
+                </a>
+              </footer>
+              <!-- .cd-pricing-footer -->
+            </li>
+          </ul>
+          <!-- .cd-pricing-wrapper -->
+        </li>
+      </ul>
+
+      <br><br>
+
+      <ul class="cd-pricing-list cd-bounce-invert">
+        <li>
+          <ul class="cd-pricing-wrapper">
+            <li data-type="monthly" class="is-visible">
+              <header class="cd-pricing-header">
+                <h2>Movie API</h2>
+              </header>
+              <!-- .cd-pricing-header -->
+
+              <div class="cd-pricing-body">
+                <ul class="cd-pricing-features">
+                  <img src="https://cdn.wallpapersafari.com/17/53/KxLzJS.jpg" alt="" style="width: 100%; height: 100%" />
+                </ul>
+              </div>
+              <!-- .cd-pricing-body -->
+
+              <footer class="cd-pricing-footer">
+                <a class="cd-select" href="{% url 'movie_genres' %}">
+                  <font size="+1"><strong>Movie API</strong></font>
+                </a>
+              </footer>
+              <!-- .cd-pricing-footer -->
+            </li>
+
+            <li data-type="yearly" class="is-hidden">
+              <header class="cd-pricing-header">
+                <h2>Movie Details</h2>
+              </header>
+              <!-- .cd-pricing-header -->
+
+              <div class="cd-pricing-body">
+                <ul class="cd-pricing-features">
+                  <p>The Movie API pulls from the tMDB databases. You can choose your movies based on genre then rank them based on their popularity, tMDB score, and their year of release! </p>
+                </ul>
+              </div>
+              <!-- .cd-pricing-body -->
+
+              <footer class="cd-pricing-footer">
+                <a class="cd-select" href="{% url 'movie_genres' %}">
+                  <font size="+1"><strong>Movie API</strong></font>
+                </a>
+              </footer>
+              <!-- .cd-pricing-footer -->
+            </li>
+          </ul>
+          <!-- .cd-pricing-wrapper -->
+        </li>
+        <li>
+          <ul class="cd-pricing-wrapper">
+            <li data-type="monthly" class="is-visible">
+              <header class="cd-pricing-header">
+                <h2>Custom Decision</h2>
+              </header>
+              <!-- .cd-pricing-header -->
+
+              <div class="cd-pricing-body">
+                <ul class="cd-pricing-features">
+                  <img src="../../static/tmp2/assets/images/custom_img.jpeg" alt="" style="width: 100%; height: 100%" />
+                </ul>
+              </div>
+              <!-- .cd-pricing-body -->
+
+              <footer class="cd-pricing-footer">
+                <a class="cd-select" href="{% url 'custom' %}">
+                  <font size="+1"><strong>Custom Decision</strong></font>
+                </a>
+              </footer>
+              <!-- .cd-pricing-footer -->
+            </li>
+
+            <li data-type="yearly" class="is-hidden">
+              <header class="cd-pricing-header">
+                <h2>Custom Details</h2>
+              </header>
+              <!-- .cd-pricing-header -->
+
+              <div class="cd-pricing-body">
+                <ul class="cd-pricing-features">
+                  <p>Custom decision doesn't pull from an API. All the useful information is provided by you - the user. You provide what you want to decide on then then add weights to those criteria. Then you add scores and with some magic we provide an
+                    objective ranking.</p>
+                </ul>
+              </div>
+              <!-- .cd-pricing-body -->
+
+              <footer class="cd-pricing-footer">
+                <a class="cd-select" href="{% url 'restaurant' %}">
+                  <font size="+1"><strong>Custom Decision</strong></font>
+                </a>
+              </footer>
+              <!-- .cd-pricing-footer -->
+            </li>
+          </ul>
+          <!-- .cd-pricing-wrapper -->
+        </li>
+    </div>
+    </ul>
+    <!-- .cd-pricing-list -->
+    </div>
+    <!-- .cd-pricing-container -->
+
+  </section>
+
+  <!-- Sections -->
+  <section name="stepByStep" id="stepByStep" class="price sections">
+    <div class="container">
+      <div class="head_title text-center">
+        <h1>Step by Step instructions</h1>
+        <p>Welcome! Here I will show what to do to make that confused decision so much more clear. Buckle up and enjoy the step by step ride to making decisions using API's or your own custom decisions.</p>
+      </div>
+
+      <!-- Custom Decisions row step by step -->
+      <div class="row">
+        <h2>Custom Decision</h2>
+        <div class="portfolio-wrapper text-center">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="card text-black bg-light mb-3">
+              <i class="fa fa-arrow-down" style="font-size: 2em; color: deepskyblue;"></i>
+              <div class="separator"></div>
+              <h4>Start Here!</h4>
+              <p>First pick what you want to decide on. Example: Books</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="card text-black bg-light mb-3">
+              <i class="fa fa-folder-open"></i>
+              <div class="separator"></div>
+              <h4>Item Selection</h4>
+              <p>Now you have to add all the items that are important to you. Example: Harry Potter series, Song of Ice and Fire, or Lord of the Rings</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="card text-black bg-light mb-3">
+              <i class="fa fa-edit"></i>
+              <div class="separator"></div>
+              <h4>Add Weight</h4>
+              <p>Here You want to add the criteria and weight for which separates the Items from each other. Weight them with higher numbers meaning more important. Example: Page numbers, User Ratings, or Genre</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="card text-black bg-light mb-3">
+              <i class="fa fa-edit"></i>
+              <div class="separator"></div>
+              <h4>Score those Items!</h4>
+              <p style="font-size: 0.9em;">Score those items you picked with a subjective ranking. These numbers are limited only by a max value of 100. Example: Harry Potter series are long so I would rank it lower, maybe 2 or 3. The genre however is wonderful so I would rank it
+                at about 30 or so.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <br><br>
+      <!-- row 2 for custom decisions -->
+      <div class="row">
+        <div class="portfolio-wrapper text-center">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="card text-black bg-light mb-3">
+              <i class="fa fa-child" style="font-size: 2em;"></i>
+              <div class="separator"></div>
+              <h4>Results!</h4>
+              <p>Now our software will spit out an objective ranking of your subjective decisions</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12" >
+          <div class="card text-black bg-light mb-3">
+              <i class="fa fa-comment"></i>
+              <div class="separator"></div>
+              <h4>Provide Feedback!</h4>
+              <p>If you enjoyed it please contact us and tell us what you liked about it. Didn't like it? Tell us why? Have a suggestion - Hit Us Up!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br><br><br>
+
+      <!-- API decisions -->
+      <div class="row">
+        <h2>An API Decision</h2>
+        <div class="portfolio-wrapper text-center">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="card text-black bg-light mb-3">
+              <i class="fa fa-crosshairs" style="font-size: 3em; color: yellowgreen"></i>
+              <div class="separator"></div>
+              <h4>Pick an API!</h4>
+              <p>Pick an API you want to pull from. I picked College for this example.</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="card text-black bg-light mb-3">
+              <i class="fa fa-folder-open"></i>
+              <div class="separator"></div>
+              <h4>Narrow it Down</h4>
+              <p>These API's are huge so we have to narrow do the search. With the College API I picked the ZIP Code to narrow it down.</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="card text-black bg-light mb-3">
+              <i class="fa fa-edit"></i>
+              <div class="separator"></div>
+              <h4>Values for Narrowing</h4>
+              <p>Here you want to add the values to actually narrow down the search.</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="card text-black bg-light mb-3">
+              <i class="fa fa-folder-open"></i>
+              <div class="separator"></div>
+              <h4>Pick Criteria</h4>
+              <p>Each API decision needs criteria to be selected. For example the College API has many and I choose Average Age and In State Tuition.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br><br>
+      <!-- API decisions Row 2-->
+      <div class="row">
+        <div class="portfolio-wrapper text-center">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="card text-black bg-light mb-3">
+              <i class="fa fa-edit"></i>
+              <div class="separator"></div>
+              <h4>Weight those Criteria</h4>
+              <p>Here You want to add the criteria and weight for which separates the Items from each other. Weight them with higher numbers meaning more important.</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="card text-black bg-light mb-3">
+              <i class="fa fa-edit"></i>
+              <div class="separator"></div>
+              <h4>Score Them!</h4>
+              <p>Select from the drop down menu which is more important.</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="card text-black bg-light mb-3">
+              <i class="fa fa-child" style="font-size: 2em;"></i>
+              <div class="separator"></div>
+              <h4>Results!</h4>
+              <p>Now our software will spit out an objective ranking of your subjective decisions</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="card text-black bg-light mb-3">
+              <i class="fa fa-comment"></i>
+              <div class="separator"></div>
+              <h4>Provide Feedback!</h4>
+              <p>If you enjoyed it please contact us and tell us what you liked about it. Didn't like it? Tell us why? Have a suggestion - Hit Us Up!</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- /container -->
+  </section>
+
+
+  <section id="contact" class="portfolio sections">
+    <div class="container">
+      <div class="row">
+        <div class="main_contact whitebackground">
+          <div class="head_title text-center">
+            <h2>SUGGESTIONS</h2>
+            <p>Do you have a suggestion? Is there something you think this site is missing? Do you have an API idea? Please contact us and we will see what we can do :) -RKA</p>
+          </div>
+          <div class="contact_content">
+            <div class="col-md-6">
+              <div class="single_left_contact">
+                <form action="#" id="formid" method="post">
+                  {%csrf_token%}
+
+                  <div class="form-group">
+                    {{ form.contact_name.errors }} {{ form.contact_name }}
+                  </div>
+
+                  <div class="form-group">
+                    {{ form.contact_email.errors }} {{ form.contact_email }}
+                  </div>
+
+                  <div class="form-group">
+                    {{ form.content.errors }} {{ form.content }}
+                  </div>
+
+                  <div class="center-content">
+                    <input type="submit" value="Submit" class="btn btn-default">
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="single_right_contact">
+                <p>Please provide the information and send your feedback! We will hopefully be able to implement your idea!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End of Contact Section -->
+
+  <div class="scrollup">
+    <a href="#"><i class="fa fa-chevron-up"></i></a>
+  </div>
+
+
+  <script src="../../static/tmp2/assets/js/vendor/jquery-1.11.2.min.js"></script>
+  <script src="../../static/tmp2/assets/js/vendor/bootstrap.min.js"></script>
+
+  <script src="../../static/tmp2/assets/js/plugins.js"></script>
+  <script src="../../static/tmp2/assets/js/modernizr.js"></script>
+  <script src="../../static/tmp2/assets/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+
+{% extends 'base/base.html' %} {% block content %} {% load template_filters %}
+{% load static %}
+
+<style media="screen">
+.carousel-item {
+	height: 100vh;
+	min-height: 300px;
+	background: no-repeat center center scroll;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 110px;
+  height: 110px;
+}
+
+</style>
+
+<div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+	<ol class="carousel-indicators" >
+		<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+		<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+		<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+	 	<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+	 	<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+	</ol>
+	<div class="carousel-inner" role="listbox">
+		<!-- Slide One - Set the background image for this slide in the line below -->
+		<div class="carousel-item active" style="background-image:url({% static 'img/South_Green.jpg' %})" href="{% url 'college' %}">
+			<div class="carousel-caption">
+				<a href="{% url 'college' %}"><font color="white">
+				<h3>Colleges</h3>
+				<p>Find colleges by filtering with categories such as tuition cost, location and retention rate.</p>
+				Get Started</a> </font>
+			</div>
+		</div>
+		<!-- Slide Two - Set the background image for this slide in the line below -->
+		<div class="carousel-item" style="background-image: url({% static '/img/recipes.jpg' %})">
+			<div class="carousel-caption">
+				<a href="{% url 'cars_criteria' %}"><font color="white">
+				<h3>Recipes</h3>
+				<p>Find recipes by filtering with ratings, cook time and flavors.</p>
+				Get Started</font> </a>
+
+			</div>
+		</div>
+		<!-- Slide Three - Set the background image for this slide in the line below -->
+		<div class="carousel-item" style="background-image: url({% static '/img/rest.jpg' %})">
+			<div class="carousel-caption">
+				<a href="{% url 'restaurant' %}"><font color="white">
+				<h3>Restaurants</h3>
+				<p>Find restaurants near you by filtering with categories such as user ratings and price range.</p>
+				Get Started</font> </a>
+			</div>
+		</div>
+		<!-- Slide Four - Set the background image for this slide in the line below -->
+		<div class="carousel-item" style="background-image: url(https://cdn.wallpapersafari.com/17/53/KxLzJS.jpg)">
+			<div class="carousel-caption">
+				<a href="{% url 'movie_genres' %}"><font color="white">
+				<h3>Movies</h3>
+				<p>Find movies you might enjoy by filtering with categories such as IMDB score</p>
+				Get Started</font></a>
+			</div>
+		</div>
+		<!-- Slide Five - Set the background image for this slide in the line below -->
+		<div class="carousel-item"  style="background-image: url({% static '/img/custom.jpg' %})">
+			<div class="carousel-caption">
+				<a href="{% url 'custom' %}"><font color="white">
+				<h3>Custom</h3>
+				<p>Create your own decision using information on any set of items you choose.</p>
+				Get Started</font></a>
+			</div>
+		</div>
+	</div>
+	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true" ></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true" ></span>
+		<span class="sr-only" >Next</span>
+	</a>
+</div>
+
+<footer class="footer bg-dark text-white">
+	<div class="container">
+
+		<div class="footer-copyright py-3 text-center">
+			© 2018 Copyright:
+			<a href="https://www.ohio.edu/engineering/eecs/">Ohio University CS Senior Design</a>
+		</div>
+</div>
+</footer>
+
+<script>
+$(document).ready(function(){
+    $("#carouselExampleIndicators").carousel({interval: 12000});
+});
+</script>
+
+{% endblock %}

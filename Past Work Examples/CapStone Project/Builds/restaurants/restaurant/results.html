@@ -1,0 +1,91 @@
+
+{% extends 'base/base.html' %} {% block content %}
+<style>
+  #centerer {
+    text-align: center;
+  }
+
+  table {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  th {
+    font-size: 25px;
+  }
+
+  td {
+    font-size: 20px;
+  }
+</style>
+<br>
+<div>
+  <div class="results">
+    <div id=centerer>
+      <h2> Restaurant Results </h2>
+    <br>
+    <!-- Marketing messaging and featurettes
+	================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+      <div class="row">
+        <div class="col-lg-4">
+          <img class="rounded-circle" src="../../static/img/number1.png" alt="Generic placeholder image" width="140" height="140">
+          <h2>1st: {{restaurantList.0.0}} </h2>
+          <p>Score was {{restaurantList.0.1}}</p>
+          <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="rounded-circle" src="../../static/img/number2.png" alt="Generic placeholder image" width="140" height="140">
+          <h2>2nd: {{restaurantList.1.0}} </h2>
+          <p>Score was {{restaurantList.1.1}}</p>
+          <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+        </div>
+        <!-- /.col-lg-4 -->
+        {% if restaurantList.2.0 %}
+        <div class="col-lg-4">
+          <img class="rounded-circle" src="../../static/img/number3.png" alt="Generic placeholder image" width="140" height="140">
+          <h2>3rd: {{restaurantList.2.0}} </h2>
+          <p>Score was {{restaurantList.2.1}}</p>
+          <!--
+  <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+          <!--
+	    <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+        </div>
+        <!-- /.col-lg-4 -->
+        {% endif %}
+      </div>
+      <!-- /.row -->
+    </div>
+    {% if length > 3 %}
+    <div class="col-9" style="margin: auto;">
+      <table class="table">
+        <tr>
+          <th> # </th>
+          <th> Restaurant Name </th>
+          <th> Final Score </th>
+        </tr>
+        {% for item in restaurantList %} {% if forloop.counter > 3 %}
+        <tr>
+          <td> {{forloop.counter}} </td>
+          <td> {{item.0}}</td>
+          <td> {{item.1}} </td>
+        </tr>
+        {% endif %} {% endfor %}
+      </table>
+      {% endif %} {% if request.user.is_authenticated %} {% if request.session.saved %}
+      <b> Decision saved successfully! </b> {% else %}
+      <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Save">
+      </form>
+      {% endif %} {% endif %}
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<script>
+function rename(pk,decision) {
+
+  var name = prompt("What new name would you like to give this decision?",decision);
+
+  if (name.includes('/')) {
+    window.alert("Names can't have a forward slash (/) in them");
+  }
+  else {
+    window.location = "http://" + "{{ request.get_host }}" +"/profile/" + pk + "/" + name + "/rename";
+  }
+}
+
+function del_decision(pk,decision) {
+
+  var choice = confirm("Are you sure you want to delete your decision (" + decision + ")?");
+  console.log(choice)
+  if (choice) {
+    console.log('the')
+    window.location = "http://" + "{{ request.get_host }}" + "/profile/" + pk + "/delete";
+  }
+}
+</script>
+
+<style>
+body{
+  padding-top: 60px;
+  margin: auto;
+}
+</style>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href = "https://www.favicon.cc/logo3d/577278.png">
+
+    {% block title %}<title>MAUT- Multi Attribute Utility Theory </title> {% endblock %}
+    {% load static %}
+    <!-- Bootstrap CDNs -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome CDN -->
+
+    <script src="https://use.fontawesome.com/f089f1e2d3.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="../../static/css/starter-template.css" rel="stylesheet">
+    <link href="../../static/css/signin.css" rel="stylesheet">
+    <link href="../../static/css/1/index.css" rel="stylesheet">
+  </head>
+  <!-- bootstrap Nav Bar -->
+   <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="{%url 'userHome' %}">MAUT</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'UserDecisionView' %}">New Decision</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'userHome' %}">Profile<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'logout' %}?next=/login/">Logout</a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link text-white" href="{% url 'contact' %}"> Contact Us </a>
+          </li>
+    </nav>
+    <!--
+		<div class="container-fluid">
+      <div class="row">
+        <div class= "col-md-3">
+          <div class= "profile-sidebar">
+            <div class= "profile-user-pic">
+              <img src="https://guarddome.com/assets/images/profile-img.jpg" alt ="" class = "img-fluid rounded-circle">
+            </div>
+            <div class="profile-user-title">
+              <div class="profile-user-name">
+                {{user.first_name}} {{user.last_name}}
+              </div>
+  
+              <div class="profile-user-buttons">
+                <button class="btn btn-success btn-sm"> Follow </button>
+                <button class="btn btn-danger btsn sm">Message</button>
+              </div>
+
+              <div class="profile-user-menu">
+                <ul class= "nav flex-column">
+                  <li class="nav-item"><a class= "nav-link active" href=""><i class="fa fa-home" aria-hidden="true"></i>  Overview</a></li>
+                  <li class= "nav-item"><a class="nav-link" href=""><i class = "fa fa-user-circle" aria-hidden="true"></i>  Edit Profile</a></li>
+                </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      This was nice... but it fucks up the whole other page :( -Mark May
+      {% if message != "" %}
+        <b style="color: green"> {{message}} </b>
+      {% endif %}
+    -->
+      <div class="col-md-7">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+              <a href="" data-target="#decisions" data-toggle="tab" class="nav-link active">Decisions</a>
+          </li>
+          <li class="nav-item">
+              <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
+          </li>
+          <li class="nav-item">
+              <a href="" data-target="#pwd" data-toggle="tab" class="nav-link">Change Password</a>
+          </li>
+        </ul>
+        <div class="tab-content py-4">
+          <div class="tab-pane active" id="decisions">
+          <h5 class="mb-3">Decisions</h5>
+        {% if all_decisions %}
+        <h2>{{user.username|title}}'s Decisions</h2>
+        {% for decision in all_decisions %}
+          <div id="accordion">
+           <div class="card">
+            <div class="card-header">
+             <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#collapse{{forloop.counter0}}">
+              {{decision|title}}
+            </a>
+              <div style="float: right;">
+              <button class="btn btn-danger btn-sm" onclick="del_decision({{decision.pk}}, '{{decision|title}}')">Delete</button>
+              </div>
+              <div style="float: right;">
+              <a href=" {% url 'updateDecision' pk=decision.pk %}" class="btn btn-success btn-sm">Edit</a>
+            </div>
+              <div style="float: right;">
+              <button class = "btn btn-success btn sm" onclick="rename({{decision.pk}},'{{decision|title}}')">Rename</button>
+            </div>
+            </div>
+            <div id="collapse{{forloop.counter0}}" class="collapse collapse">
+            <div class="card-body">
+            {% for item in decision.item.all %}
+              {{forloop.counter}}) {{ item.itemName }} | Score: {{item.itemScore}}<br>
+            {% endfor %}
+            </div>
+           </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+          <h2>No decisions have been made</h2>
+        {% endif %}
+      </div>
+      <div class="tab-pane" id="edit">
+        <form action="{% url 'updateProfile' %}" method="post" >
+          {% csrf_token %}
+            <div class="form-group row">
+              <div class="col-lg-9">
+                {% for field in userForm %}
+                <p>
+                  {{ field.label_tag }}<br>
+                  {{ field }}
+                </p>
+                {% endfor %}
+                {% for field in profileForm %}
+                <p>
+                  {{ field.label_tag }}<br>
+                  {{ field }}
+                </p>
+                {% endfor %}
+            </div>
+            </div>
+            <div class="form-group row" method="post">
+                <label class="col-lg-3 col-form-label form-control-label"></label>
+                <div class="col-lg-4">
+                    <input type="submit" value="Save" class="btn btn-primary btn-sm">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#DeactivateAccount">Deactivate Account</button>
+                </div>
+
+            </div>
+   <div id="DeactivateAccount" class="modal fade" role="dialog" style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>
+            <strong>
+              Are you sure you want to deactivate your account?
+            </strong><br>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-danger" href="{% url 'disableProfile' %}" role="button">Yes, I'm sure</a>
+        </div>
+      </div>
+    </div>
+  </div>
+        </form>
+    </div>
+    <div class="tab-pane" id="pwd">
+      <form role ="form" method ="post">
+          {% csrf_token %}
+        <div class= "form-group row">
+          <div class="col-lg-9">
+            {{pwd.as_p}}
+          </div>
+        </div>
+      <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label"></label>
+          <div class="col-lg-9">
+              <button type="submit" class="btn btn-primary" name="pwd">Save Changes</button>
+          </div>
+      </form>
+    </div>
+</div>
+</div>
+    </div>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+    <div class="card" style="width:400px">
+  <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar1.png" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title">{{user.username|title}}</h4>
+          <div class="inner cover">
+        {% if all_decisions %}
+        <h2>{{user.username|title}}'s Decisions</h2>
+        {% for decision in all_decisions %}
+          <div id="accordion">
+           <div class="card">
+            <div class="card-header">
+             <a class="card-link" data-toggle="collapse" data-parent="#accordion" href="#collapse{{forloop.counter0}}">
+              {{decision|title}}
+             </a>
+            </div>
+            <div id="collapse{{forloop.counter0}}" class="collapse collapse">
+            <div class="card-body">
+             1) {{ decision.firstPlace }} <br>
+             2) {{ decision.secondPlace }} <br>
+             3) {{ decision.thirdPlace }} <br>
+             <button type="button" class="btn btn-secondary">Edit</button>
+             <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+           </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+          <h2>No decisions have been made</h2>
+        {% endif %}
+      </div>
+    <a href="#" class="btn btn-primary">Edit Profile</a>
+  </div>
+</div>
+		</div>
+  -->
+	</body>
+	</html>

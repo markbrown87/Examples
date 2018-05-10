@@ -1,0 +1,32 @@
+// This program reads in an array of integers and
+// computes the sum of the number of elements that are
+// out of place, i.e., A[i] > A[j], where i < j.
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  
+  int n;
+  cin >> n;
+
+  int *a;
+  a = new int[n];
+
+  for (int i=0;i<n;i++) {
+    cin >> a[i];
+  }
+
+  // Compute the sum of the pair in a that are out of order
+  long long sum=0;
+#pragma omp parallel for
+  for (int i=0;i<n;i++) {
+    for (int j=i+1;j<n;j++) {
+#pragma omp critical
+	if (a[i]> a[j]) sum++;
+    }
+  }
+
+  cout << sum << endl;
+}
+  
