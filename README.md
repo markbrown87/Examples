@@ -8,9 +8,9 @@ You will find that the many examples I have are sorted into languages. From ther
 
 ## Pages of Importance
 
-* [LinkedIn](linkedin.com/in/mark-brown-software-developer) - My LinkedIn account for furthor consideration
-* [Resume](https://drive.google.com/file/d/1iWpHXe7ABz1gGmPLl6qvpR8ak7bMjPbV/view) - PDF version of my Resume
-* [CV]() - PDF version of my Curriculum Vitae
+* linkedin.com/in/mark-brown-software-developer - My LinkedIn account for furthor consideration
+* https://drive.google.com/file/d/1iWpHXe7ABz1gGmPLl6qvpR8ak7bMjPbV/view - PDF version of my Resume
+*  - PDF version of my Curriculum Vitae
 
 ## Authors
 
