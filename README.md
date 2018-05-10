@@ -8,8 +8,8 @@ You will find that the many examples I have are sorted into languages. From ther
 
 ## Pages of Importance
 
-* https://www.linkedin.com/in/mark-brown-software-developer - My LinkedIn account for furthor consideration
-* https://drive.google.com/file/d/1iWpHXe7ABz1gGmPLl6qvpR8ak7bMjPbV/view - PDF version of my Resume
+* [LinkedIn](https://www.linkedin.com/in/mark-brown-software-developer) - My LinkedIn account for furthor consideration
+* [Resume](https://drive.google.com/file/d/1iWpHXe7ABz1gGmPLl6qvpR8ak7bMjPbV/view) - PDF version of my Resume
 *  - PDF version of my Curriculum Vitae
 
 ## Authors
