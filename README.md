@@ -10,7 +10,7 @@ You will find that the many examples I have are sorted into languages. From ther
 
 * [LinkedIn](https://www.linkedin.com/in/mark-brown-software-developer) - My LinkedIn account for furthor consideration
 * [Resume](https://docs.google.com/document/d/12SNCisz2kZRosIrodM1GAVARyRhJF7OoqRF3DKJXKxw/edit?usp=sharing) - PDF version of my Resume
-*  - PDF version of my Curriculum Vitae
+* [Curriculum Vitae](https://drive.google.com/file/d/1KakFbgpmDW2cHw_xfT0RNgAwZTlgYJN0/view?usp=sharing) - PDF version of my Curriculum Vitae
 
 ## Authors
 
