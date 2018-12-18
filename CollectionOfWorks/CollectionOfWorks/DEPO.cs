@@ -33,7 +33,7 @@ namespace CollectionOfWorks
                     for(int m = 1; m < 8; ++m)
                     {
                         // Checks if the values are equal to 12 THEN checks if they are not the same -> IFF accepted is it printed out
-                        if((i + j + m) == 12 && ((i != j) || (i != m) || (j != m)))
+                        if ((i + j + m) == 12 && ((i != j) || (i != m) || (j != m)) && (i % 2 != 1))
                         {
                             ResponseBox.Text += i.ToString() + " " + j.ToString() + " " + m.ToString() + Environment.NewLine;
                         }

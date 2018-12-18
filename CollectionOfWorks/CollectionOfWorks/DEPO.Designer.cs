@@ -48,7 +48,7 @@
             this.ResponseBox.Location = new System.Drawing.Point(12, 12);
             this.ResponseBox.Multiline = true;
             this.ResponseBox.Name = "ResponseBox";
-            this.ResponseBox.Size = new System.Drawing.Size(119, 494);
+            this.ResponseBox.Size = new System.Drawing.Size(119, 232);
             this.ResponseBox.TabIndex = 1;
             // 
             // ReturnButton
@@ -65,7 +65,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(231, 516);
+            this.ClientSize = new System.Drawing.Size(231, 255);
             this.Controls.Add(this.ReturnButton);
             this.Controls.Add(this.ResponseBox);
             this.Controls.Add(this.GenerateButton);
