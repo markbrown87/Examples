@@ -1,0 +1,11 @@
+C:\Users\mark.a.brown\Documents\CollectionOfWorks\CollectionOfWorks\CollectionOfWorks\bin\Debug\CollectionOfWorks.exe.config
+C:\Users\mark.a.brown\Documents\CollectionOfWorks\CollectionOfWorks\CollectionOfWorks\bin\Debug\CollectionOfWorks.exe
+C:\Users\mark.a.brown\Documents\CollectionOfWorks\CollectionOfWorks\CollectionOfWorks\bin\Debug\CollectionOfWorks.pdb
+C:\Users\mark.a.brown\Documents\CollectionOfWorks\CollectionOfWorks\CollectionOfWorks\obj\Debug\CollectionOfWorks.csprojAssemblyReference.cache
+C:\Users\mark.a.brown\Documents\CollectionOfWorks\CollectionOfWorks\CollectionOfWorks\obj\Debug\CollectionOfWorks.StartWindow.resources
+C:\Users\mark.a.brown\Documents\CollectionOfWorks\CollectionOfWorks\CollectionOfWorks\obj\Debug\CollectionOfWorks.Properties.Resources.resources
+C:\Users\mark.a.brown\Documents\CollectionOfWorks\CollectionOfWorks\CollectionOfWorks\obj\Debug\CollectionOfWorks.csproj.GenerateResource.cache
+C:\Users\mark.a.brown\Documents\CollectionOfWorks\CollectionOfWorks\CollectionOfWorks\obj\Debug\CollectionOfWorks.csproj.CoreCompileInputs.cache
+C:\Users\mark.a.brown\Documents\CollectionOfWorks\CollectionOfWorks\CollectionOfWorks\obj\Debug\CollectionOfWorks.exe
+C:\Users\mark.a.brown\Documents\CollectionOfWorks\CollectionOfWorks\CollectionOfWorks\obj\Debug\CollectionOfWorks.pdb
+C:\Users\mark.a.brown\Documents\CollectionOfWorks\CollectionOfWorks\CollectionOfWorks\obj\Debug\CollectionOfWorks.DEPO.resources
