@@ -29,5 +29,5 @@ int main(){
 	if(winner == game::HUMAN)
 		cout << "Congratulations >:[ You've won this time, Human. Don't get use to it.\n";
 	else
-		cout << "Hahahaha! I knew you couldn't be me. Since I won you must now award Mark Brown with each points.\n";
+		cout << "Hahahaha! I knew you couldn't beat me. Since I won you must now award Mark Brown full points on this project!! Or die mortal!.\n";
 }
